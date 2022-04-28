@@ -1,14 +1,13 @@
 require 'minitest/autorun'
+require_relative '../../lib/controllers/params'
 require_relative '../../lib/models/ls_file'
 require_relative '../../lib/views/long_format'
 
 module Views
   class LongFormatTest < Minitest::Test
     def ls_files
-      params = Object.new
-      def params.dot_match? = true
-      def params.reverse? = false
-      def params.target_directory = Pathname.new(__dir__).join('../fixtures').to_s
+      directory = Pathname.new(__dir__).join('../fixtures')
+      params = Controllers::Params.new(['-a', directory])
       Models::LsFile.all(params)
     end
 
