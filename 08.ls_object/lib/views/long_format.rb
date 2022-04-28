@@ -24,14 +24,14 @@ module Views
     def format
       total = @ls_files.sum(&:block_size)
       header = "total #{total}"
-      max_size_table = generate_max_size_table
+      widths = calc_widths
       body = @ls_files.map do |ls_file|
         columns = []
         columns << "#{format_mode(ls_file)} "
-        columns << ls_file.link_count.to_s.rjust(max_size_table[:link_count])
-        columns << "#{ls_file.owner_name.ljust(max_size_table[:owner_name])} "
-        columns << "#{ls_file.group_name.ljust(max_size_table[:group_name])} "
-        columns << ls_file.bytesize.to_s.rjust(max_size_table[:bytesize])
+        columns << ls_file.link_count.to_s.rjust(widths[:link_count])
+        columns << "#{ls_file.owner_name.ljust(widths[:owner_name])} "
+        columns << "#{ls_file.group_name.ljust(widths[:group_name])} "
+        columns << ls_file.bytesize.to_s.rjust(widths[:bytesize])
         columns << ls_file.mtime.strftime('%b %d %H:%M')
         columns << ls_file.name
         columns.join(' ')
@@ -47,15 +47,15 @@ module Views
       file_type + permission
     end
 
-    def generate_max_size_table
-      lengths = Hash.new { |h, k| h[k] = [] }
+    def calc_widths
+      widths = Hash.new { |h, k| h[k] = [] }
       @ls_files.each do |ls_file|
-        lengths[:link_count] << ls_file.link_count.to_s.size
-        lengths[:owner_name] << ls_file.owner_name.size
-        lengths[:group_name] << ls_file.group_name.size
-        lengths[:bytesize] << ls_file.bytesize.to_s.size
+        widths[:link_count] << ls_file.link_count.to_s.size
+        widths[:owner_name] << ls_file.owner_name.size
+        widths[:group_name] << ls_file.group_name.size
+        widths[:bytesize] << ls_file.bytesize.to_s.size
       end
-      lengths.transform_values(&:max)
+      widths.transform_values(&:max)
     end
   end
 end
