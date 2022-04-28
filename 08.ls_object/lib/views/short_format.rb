@@ -12,9 +12,7 @@ module Views
       column_width = @ls_files.map { |ls_file| ls_file.name.size }.max
       ls_file_table = generate_ls_file_table
       ls_file_table.map do |row|
-        row.map do |ls_file|
-          ls_file.name.ljust(column_width)
-        end.join(' ').strip
+        row.map { |ls_file| ls_file.name.ljust(column_width) }.join(' ').strip
       end.join("\n")
     end
 

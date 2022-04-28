@@ -48,19 +48,14 @@ module Views
     end
 
     def generate_max_size_table
-      ret = {
-        link_count: 0,
-        owner_name: 0,
-        group_name: 0,
-        bytesize: 0
-      }
+      lengths = Hash.new { |h, k| h[k] = [] }
       @ls_files.each do |ls_file|
-        ret[:link_count] = [ret[:link_count], ls_file.link_count.to_s.size].max
-        ret[:owner_name] = [ret[:owner_name], ls_file.owner_name.size].max
-        ret[:group_name] = [ret[:group_name], ls_file.group_name.size].max
-        ret[:bytesize] = [ret[:bytesize], ls_file.bytesize.to_s.size].max
+        lengths[:link_count] << ls_file.link_count.to_s.size
+        lengths[:owner_name] << ls_file.owner_name.size
+        lengths[:group_name] << ls_file.group_name.size
+        lengths[:bytesize] << ls_file.bytesize.to_s.size
       end
-      ret
+      lengths.transform_values(&:max)
     end
   end
 end
