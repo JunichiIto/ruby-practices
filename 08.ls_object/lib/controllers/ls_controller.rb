@@ -18,5 +18,3 @@ module Controllers
     end
   end
 end
-
-Controllers::LsController.new.main
