@@ -11,12 +11,14 @@ module Views
     def render
       column_width = @ls_files.map { |ls_file| ls_file.name.size }.max
       ls_file_table = generate_ls_file_table
-      ls_file_table.map do |row|
-        row.map { |ls_file| ls_file.name.ljust(column_width) }.join(' ').strip
-      end.join("\n")
+      ls_file_table.map { |row| format_row(row, column_width) }.join("\n")
     end
 
     private
+
+    def format_row(row, column_width)
+      row.map { |ls_file| ls_file.name.ljust(column_width) }.join(' ').strip
+    end
 
     def generate_ls_file_table
       row_count = (@ls_files.size.to_f / COLUMN_COUNT).ceil
