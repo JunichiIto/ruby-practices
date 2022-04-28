@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Views
   class LongFormat
     FILE_TYPE_TABLE = {
       'file' => '-',
-      'directory' => 'd',
+      'directory' => 'd'
     }.freeze
 
     PERMISSION_TABLE = {
@@ -12,7 +14,7 @@ module Views
       '4' => 'r--',
       '5' => 'r-x',
       '6' => 'rw-',
-      '7' => 'rwx',
+      '7' => 'rwx'
     }.freeze
 
     def initialize(ls_files)
@@ -25,12 +27,12 @@ module Views
       max_size_table = generate_max_size_table
       body = @ls_files.map do |ls_file|
         columns = []
-        columns << format_mode(ls_file) + ' '
+        columns << "#{format_mode(ls_file)} "
         columns << ls_file.link_count.to_s.rjust(max_size_table[:link_count])
-        columns << ls_file.owner_name.ljust(max_size_table[:owner_name]) + ' '
-        columns << ls_file.group_name.ljust(max_size_table[:group_name]) + ' '
+        columns << "#{ls_file.owner_name.ljust(max_size_table[:owner_name])} "
+        columns << "#{ls_file.group_name.ljust(max_size_table[:group_name])} "
         columns << ls_file.bytesize.to_s.rjust(max_size_table[:bytesize])
-        columns << ls_file.mtime.strftime("%b %d %H:%M")
+        columns << ls_file.mtime.strftime('%b %d %H:%M')
         columns << ls_file.name
         columns.join(' ')
       end
@@ -50,7 +52,7 @@ module Views
         link_count: 0,
         owner_name: 0,
         group_name: 0,
-        bytesize: 0,
+        bytesize: 0
       }
       @ls_files.each do |ls_file|
         ret[:link_count] = [ret[:link_count], ls_file.link_count.to_s.size].max

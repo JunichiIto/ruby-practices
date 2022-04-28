@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
 require 'etc'
-require "pathname"
+require 'pathname'
 
 class LsFile
   def self.all(params)
     pattern = File.join(params.target_directory, '*')
     flags = params.dot_match? ? [File::FNM_DOTMATCH] : []
     paths = Dir.glob(pattern, *flags)
-    if params.dot_match?
-      paths << File.join(params.target_directory, '..')
-    end
+    paths << File.join(params.target_directory, '..') if params.dot_match?
     sorted_paths = params.reverse? ? paths.sort.reverse : paths.sort
     sorted_paths.map { |path| LsFile.new(path) }
   end
@@ -30,7 +30,7 @@ class LsFile
   end
 
   def permission
-    file_stat.mode.to_s(8)[-3..-1]
+    file_stat.mode.to_s(8)[-3..]
   end
 
   def link_count
