@@ -4,7 +4,7 @@ require_relative '../../lib/views/short_format'
 
 module Views
   class ShortFormatTest < Minitest::Test
-    def test_format
+    def test_render
       expected = <<~TEXT.chomp
         aa.txt c.txt  e.txt
         b.txt  d.txt
@@ -13,7 +13,7 @@ module Views
         Models::LsFile.new("#{name}.txt")
       end
       ls_files = [Models::LsFile.new('aa.txt'), *ls_files]
-      assert_equal expected, ShortFormat.new(ls_files).format
+      assert_equal expected, ShortFormat.new(ls_files).render
     end
   end
 end

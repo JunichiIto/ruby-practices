@@ -21,7 +21,7 @@ module Views
       @ls_files = ls_files
     end
 
-    def format
+    def render
       total = @ls_files.sum(&:block_size)
       header = "total #{total}"
       widths = calc_widths

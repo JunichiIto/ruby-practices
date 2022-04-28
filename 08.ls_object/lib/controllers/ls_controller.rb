@@ -11,9 +11,9 @@ module Controllers
       params = Params.new(ARGV)
       ls_files = Models::LsFile.all(params)
       if params.long_format?
-        puts Views::LongFormat.new(ls_files).format
+        puts Views::LongFormat.new(ls_files).render
       else
-        puts Views::ShortFormat.new(ls_files).format
+        puts Views::ShortFormat.new(ls_files).render
       end
     end
   end

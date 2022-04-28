@@ -12,7 +12,7 @@ module Views
       Models::LsFile.all(params)
     end
 
-    def test_format
+    def test_render
       expected = <<~TEXT.chomp
         total 96
         drwxr-xr-x  16 jnito  staff   512 Apr 28 11:09 .
@@ -32,7 +32,7 @@ module Views
         -rw-r--r--   1 jnito  staff   322 Mar 20 17:45 routes.rb
         -rw-r--r--   1 jnito  staff  1152 Mar 20 17:45 storage.yml
       TEXT
-      assert_equal expected, LongFormat.new(ls_files).format
+      assert_equal expected, LongFormat.new(ls_files).render
     end
   end
 end
