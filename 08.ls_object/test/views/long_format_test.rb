@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../../lib/ls_file'
+require_relative '../../lib/models/ls_file'
 require_relative '../../lib/views/long_format'
 
 module Views
@@ -9,7 +9,7 @@ module Views
       def params.dot_match? = true
       def params.reverse? = false
       def params.target_directory = Pathname.new(__dir__).join('../fixtures').to_s
-      LsFile.all(params)
+      Models::LsFile.all(params)
     end
 
     def test_format

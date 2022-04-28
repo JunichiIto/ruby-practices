@@ -24,7 +24,7 @@ module Views
       row_count = (@ls_files.size.to_f / COLUMN_COUNT).ceil
       ls_file_table = @ls_files.each_slice(row_count).to_a
       blank_count = row_count - ls_file_table[-1].size
-      blank_ls_files = Array.new(blank_count, LsFile.new(''))
+      blank_ls_files = Array.new(blank_count, Models::LsFile.new(''))
       ls_file_table[-1].push(*blank_ls_files)
       ls_file_table.transpose
     end
