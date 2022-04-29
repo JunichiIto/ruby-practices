@@ -60,4 +60,15 @@ class LsAppTest < Minitest::Test
       LsApp.new.main(argv)
     end
   end
+
+  def test_short_format_without_args
+    expected = <<~TEXT
+      Rakefile lib
+      bin      test
+    TEXT
+    argv = []
+    assert_output(expected) do
+      LsApp.new.main(argv)
+    end
+  end
 end
