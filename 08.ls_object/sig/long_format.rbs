@@ -1,0 +1,12 @@
+class LongFormat
+  FILE_TYPE_TABLE: Hash[String, String]
+  PERMISSION_TABLE: Hash[String, String]
+  @ls_files: Array[LsFile]
+
+  def initialize: (Array[LsFile] ls_files) -> void
+  def render: -> String
+
+  private
+  def format_mode: (LsFile ls_file) -> String
+  def calc_widths: -> Hash[Symbol, Integer]
+end

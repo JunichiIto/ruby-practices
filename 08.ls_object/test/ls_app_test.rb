@@ -63,8 +63,8 @@ class LsAppTest < Minitest::Test
 
   def test_short_format_without_args
     expected = <<~TEXT
-      Rakefile lib
-      bin      test
+      Rakefile  bin       sig
+      Steepfile lib       test
     TEXT
     argv = []
     assert_output(expected) do

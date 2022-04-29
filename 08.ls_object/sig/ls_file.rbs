@@ -1,0 +1,31 @@
+module Etc
+  class Passwd
+    def name: -> String
+  end
+  class Group
+    def name: -> String
+  end
+  def self.getpwuid: (Integer uid) -> Etc::Passwd
+  def self.getgrgid: (Integer uid) -> Etc::Group
+end
+
+
+class LsFile
+  @pathname: Pathname
+
+  def self.all: (Params params) -> Array[LsFile]
+  def initialize: (String path) -> void
+  def name: -> String
+  def block_size: -> Integer
+  def file_type: -> String
+  def permission: -> String
+  def link_count: -> Integer
+  def owner_name: -> String
+  def group_name: -> String
+  def bytesize: -> Integer
+  def mtime: -> Time
+  def to_s: -> String
+
+  private
+  def file_stat: -> File::Stat
+end

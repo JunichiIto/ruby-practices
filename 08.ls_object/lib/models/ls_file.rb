@@ -6,8 +6,8 @@ require 'pathname'
 class LsFile
   def self.all(params)
     pattern = File.join(params.target_directory, '*')
-    flags = params.dot_match? ? [File::FNM_DOTMATCH] : []
-    paths = Dir.glob(pattern, *flags)
+    flag = params.dot_match? ? File::FNM_DOTMATCH : 0
+    paths = Dir.glob(pattern, flag)
     paths << File.join(params.target_directory, '..') if params.dot_match?
     sorted_paths = params.reverse? ? paths.sort.reverse : paths.sort
     sorted_paths.map { |path| LsFile.new(path) }
@@ -22,7 +22,7 @@ class LsFile
   end
 
   def block_size
-    file_stat.blocks
+    file_stat.blocks || 0
   end
 
   def file_type
@@ -30,7 +30,7 @@ class LsFile
   end
 
   def permission
-    file_stat.mode.to_s(8)[-3..]
+    file_stat.mode.to_s(8)[-3..] || ''
   end
 
   def link_count
