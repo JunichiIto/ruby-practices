@@ -12,7 +12,7 @@ class LsAppTest < Minitest::Test
     expected = <<~TEXT
       total 80
       drwxr-xr-x  15 jnito  staff   480 Apr 29 12:20 .
-      drwxr-xr-x   4 jnito  staff   128 Apr 29 12:20 ..
+      drwxr-xr-x   4 jnito  staff   128 Apr 29 12:37 ..
       -rw-r--r--   1 jnito  staff   740 Mar 20 17:45 application.rb
       -rw-r--r--   1 jnito  staff   207 Mar 20 17:45 boot.rb
       -rw-r--r--   1 jnito  staff   193 Mar 20 17:45 cable.yml
