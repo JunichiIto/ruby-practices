@@ -6,7 +6,7 @@ module Etc
     def name: -> String
   end
   def self.getpwuid: (Integer uid) -> Etc::Passwd
-  def self.getgrgid: (Integer uid) -> Etc::Group
+  def self.getgrgid: (Integer group_id) -> Etc::Group
 end
 
 
