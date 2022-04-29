@@ -5,7 +5,7 @@ require_relative '../lib/ls_app'
 
 class LsAppTest < Minitest::Test
   def setup
-    @directory = Pathname.new(__dir__).join('fixtures/config')
+    @directory = Pathname.new(__dir__ || '').join('fixtures/config').to_s
   end
 
   def test_long_format
@@ -63,8 +63,9 @@ class LsAppTest < Minitest::Test
 
   def test_short_format_without_args
     expected = <<~TEXT
-      Rakefile  bin       sig
-      Steepfile lib       test
+      Rakefile    lib         test
+      Steepfile   sig
+      bin         sig-private
     TEXT
     argv = []
     assert_output(expected) do
