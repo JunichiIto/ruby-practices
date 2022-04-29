@@ -3,4 +3,4 @@
 
 require_relative '../lib/controllers/ls_controller'
 
-Controllers::LsController.new.main
+LsController.new.main
