@@ -29,7 +29,7 @@ class LsAppTest < Minitest::Test
     TEXT
     argv = ['-al', @directory]
     assert_output(expected) do
-      LsApp.new.main(argv)
+      LsApp.main(argv)
     end
   end
 
@@ -43,7 +43,7 @@ class LsAppTest < Minitest::Test
     TEXT
     argv = [@directory]
     assert_output(expected) do
-      LsApp.new.main(argv)
+      LsApp.main(argv)
     end
   end
 
@@ -57,7 +57,7 @@ class LsAppTest < Minitest::Test
     TEXT
     argv = ['-ar', @directory]
     assert_output(expected) do
-      LsApp.new.main(argv)
+      LsApp.main(argv)
     end
   end
 
@@ -68,7 +68,7 @@ class LsAppTest < Minitest::Test
     TEXT
     argv = []
     assert_output(expected) do
-      LsApp.new.main(argv)
+      LsApp.main(argv)
     end
   end
 end
