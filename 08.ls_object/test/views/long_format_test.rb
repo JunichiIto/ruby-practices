@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative '../../lib/controllers/params'
+require_relative '../../lib/params'
 require_relative '../../lib/models/ls_file'
 require_relative '../../lib/views/long_format'
 
