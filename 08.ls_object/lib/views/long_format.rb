@@ -25,15 +25,15 @@ class LongFormat
     header = "total #{total}"
     widths = calc_widths
     body = @ls_files.map do |ls_file|
-      columns = []
-      columns << "#{format_mode(ls_file)} "
-      columns << ls_file.link_count.to_s.rjust(widths[:link_count])
-      columns << "#{ls_file.owner_name.ljust(widths[:owner_name])} "
-      columns << "#{ls_file.group_name.ljust(widths[:group_name])} "
-      columns << ls_file.bytesize.to_s.rjust(widths[:bytesize])
-      columns << ls_file.mtime.strftime('%b %d %H:%M')
-      columns << ls_file.name
-      columns.join(' ')
+      [
+        "#{format_mode(ls_file)} ",
+        ls_file.link_count.to_s.rjust(widths[:link_count]),
+        "#{ls_file.owner_name.ljust(widths[:owner_name])} ",
+        "#{ls_file.group_name.ljust(widths[:group_name])} ",
+        ls_file.bytesize.to_s.rjust(widths[:bytesize]),
+        ls_file.mtime.strftime('%b %d %H:%M'),
+        ls_file.name
+      ].join(' ')
     end
     [header, *body].join("\n")
   end
