@@ -24,21 +24,23 @@ class LongFormat
     total = @ls_files.sum(&:block_size)
     header = "total #{total}"
     widths = calc_widths
-    body = @ls_files.map do |ls_file|
-      [
-        "#{format_mode(ls_file)} ",
-        ls_file.link_count.to_s.rjust(widths[:link_count]),
-        "#{ls_file.owner_name.ljust(widths[:owner_name])} ",
-        "#{ls_file.group_name.ljust(widths[:group_name])} ",
-        ls_file.bytesize.to_s.rjust(widths[:bytesize]),
-        ls_file.mtime.strftime('%b %d %H:%M'),
-        ls_file.name
-      ].join(' ')
-    end
+    body = @ls_files.map { |ls_file| format_row(ls_file, widths) }
     [header, *body].join("\n")
   end
 
   private
+
+  def format_row(ls_file, widths)
+    [
+      "#{format_mode(ls_file)} ",
+      ls_file.link_count.to_s.rjust(widths[:link_count]),
+      "#{ls_file.owner_name.ljust(widths[:owner_name])} ",
+      "#{ls_file.group_name.ljust(widths[:group_name])} ",
+      ls_file.bytesize.to_s.rjust(widths[:bytesize]),
+      ls_file.mtime.strftime('%b %d %H:%M'),
+      ls_file.name
+    ].join(' ')
+  end
 
   def format_mode(ls_file)
     file_type = FILE_TYPE_TABLE[ls_file.file_type]
