@@ -3,6 +3,8 @@
 require 'optparse'
 
 class Params
+  attr_reader :target_directory
+
   def initialize(argv)
     opt = OptionParser.new
 
@@ -12,7 +14,7 @@ class Params
     opt.on('-r') { @params[:r] = true }
 
     paths = opt.parse!(argv)
-    @target_directory = paths[0]
+    @target_directory = paths[0] || Dir.getwd
   end
 
   def dot_match?
@@ -25,9 +27,5 @@ class Params
 
   def long_format?
     !!@params[:l]
-  end
-
-  def target_directory
-    @target_directory || Dir.getwd
   end
 end
