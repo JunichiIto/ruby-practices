@@ -1,0 +1,9 @@
+module Minitest
+  class Test
+    def assert_output: (String) { () -> void } -> void
+  end
+end
+
+class LsAppTest < Minitest::Test
+  @directory: String
+end

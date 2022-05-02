@@ -1,0 +1,11 @@
+class ShortFormat
+  COLUMN_COUNT: Integer
+  @ls_files: Array[LsFile]
+
+  def initialize: (Array[LsFile] ls_files) -> void
+  def render: -> String
+
+  private
+  def format_row: (Array[LsFile] row, Integer column_width) -> String
+  def generate_ls_file_table: -> Array[Array[LsFile]]
+end

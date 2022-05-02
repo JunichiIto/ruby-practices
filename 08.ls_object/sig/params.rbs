@@ -1,0 +1,9 @@
+class Params
+  @params: Hash[Symbol, bool]
+  attr_reader target_directory: String
+
+  def initialize: (Array[String] argv) -> void
+  def dot_match?: -> bool
+  def reverse?: -> bool
+  def long_format?: -> bool
+end

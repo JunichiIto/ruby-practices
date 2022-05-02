@@ -8,7 +8,7 @@ class ShortFormat
   end
 
   def render
-    column_width = @ls_files.map { |ls_file| ls_file.name.size }.max
+    column_width = @ls_files.map { |ls_file| ls_file.name.size }.max || 0
     ls_file_table = generate_ls_file_table
     ls_file_table.map { |row| format_row(row, column_width) }.join("\n")
   end

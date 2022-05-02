@@ -1,0 +1,3 @@
+module LsApp
+  def self.main: (?Array[String] argv) -> void
+end

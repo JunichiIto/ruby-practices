@@ -22,7 +22,7 @@ class LsFile
   end
 
   def block_size
-    file_stat.blocks
+    file_stat.blocks || 0
   end
 
   def file_type
@@ -30,7 +30,7 @@ class LsFile
   end
 
   def permission
-    file_stat.mode.to_s(8)[-3..]
+    file_stat.mode.to_s(8)[-3..] || ''
   end
 
   def link_count
