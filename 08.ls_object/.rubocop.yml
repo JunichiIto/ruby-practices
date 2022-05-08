@@ -1,0 +1,11 @@
+inherit_gem:
+  rubocop-fjord:
+    - "config/rubocop.yml"
+
+AllCops:
+  Exclude:
+    - test/fixtures/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - test/**/*
